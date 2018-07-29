@@ -1,0 +1,20 @@
+server:
+  port: 12882
+  ssl:
+    enabled: true
+    key-store: "classpath:certificate.p12"
+    key-store-password: "Sweet1smile%"
+    keyStoreType: PKCS12
+management:
+  security:
+    enabled: false
+spring:
+  application:
+    name: cloudGateway
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+
+

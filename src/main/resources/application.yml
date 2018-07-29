@@ -1,0 +1,27 @@
+zuul:
+  ignored-services: '*'
+  routes:
+    codePipeline:
+      path: /madara/**
+      serviceId: codePipeline
+    eureka:
+      path: /dashboard/**
+      url: http://discovery:8761/
+  prefix: /hack-me
+  sensitive-headers: Cookie,Set-Cookiels
+security:
+  basic:
+    enabled: false
+
+
+# Global - affects every Ribbon instances (not only your services but also Eureka client!)
+
+  hystrix:
+    command:
+      default:
+        execution:
+          isolation:
+            thread:
+              timeoutInMilliseconds: 60000
+
+

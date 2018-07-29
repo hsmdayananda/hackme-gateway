@@ -1,0 +1,53 @@
+zuul:
+  ignored-services: '*'
+  routes:
+    transformation:
+      path: /transformation/**
+      serviceId: transformation
+    datagate:
+      path: /datagate/**
+      serviceId: datagate
+    translation:
+      path: /translation/**
+      serviceId: translation
+    configuration:
+      path: /configurations/**
+      serviceId: configuration
+    oauth:
+      path: /oauth/**
+      serviceId: oauth
+    auth:
+      path: /auth/**
+      serviceId: auth
+    codePipeline:
+      path: /madara/**
+      serviceId: codePipeline
+    eureka:
+      path: /dashboard/**
+      url: http://discovery:8761/
+  prefix: /wallet-cloud
+  sensitive-headers: Cookie,Set-Cookiels
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      accessTokenUri: http://auth:8080/oauth/token
+      userAuthorizationUri: /oauth/authorize
+      client-id: polixia-mobile
+      client-secret: dannene
+    resource:
+      prefer-token-info: true
+      token-info-uri: http://auth:8080/oauth/check_token
+
+# Global - affects every Ribbon instances (not only your services but also Eureka client!)
+
+  hystrix:
+    command:
+      default:
+        execution:
+          isolation:
+            thread:
+              timeoutInMilliseconds: 60000
+
+
